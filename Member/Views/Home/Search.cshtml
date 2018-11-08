@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Member.Models.MemberModel>
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+<div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">User Details</div>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+            @if (Model.Count()==0)
+            {
+                <tr><td colspan="5" class="text-center">No User Account!</td></tr>
+            }
+            else
+            {
+                foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.Name</td>
+                        <td>@user.Email</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = user.Id }, new { @class = "btn btn-primary btn-xs" })
+                            @Html.ActionLink("Delete", "Delete", new { id = user.Id }, new { @class = "btn btn-primary btn-xs" })
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</div>
+
